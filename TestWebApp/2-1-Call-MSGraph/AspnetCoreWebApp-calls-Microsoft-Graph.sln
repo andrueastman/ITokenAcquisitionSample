@@ -5,18 +5,18 @@ VisualStudioVersion = 16.0.29123.89
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp-OpenIDConnect-DotNet", "WebApp-OpenIDConnect-DotNet.csproj", "{8DCFEEC2-0A85-4C7E-B96A-21C9184470B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Identity.Web", "..\..\Microsoft.Identity.Web\Microsoft.Identity.Web.csproj", "{E0CEF26A-6CE6-4505-851B-6580D5564752}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CD0BB564-6C1E-4FCE-B9AB-7C637FDEE569}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Identity.Web.Test", "..\..\Microsoft.Identity.Web.Test\Microsoft.Identity.Web.Test.csproj", "{8CCEAE2A-BDF6-470C-B6DE-7FC81A74DBD7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Identity.Web.UI", "..\..\Microsoft.Identity.Web.UI\Microsoft.Identity.Web.UI.csproj", "{8CC22202-F66C-4332-A4F0-A2C09EBA08EC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Graph.Core", "..\..\msgraph-sdk-dotnet-core\src\Microsoft.Graph.Core\Microsoft.Graph.Core.csproj", "{31ED7819-E00F-43C6-9CDD-D408C443A618}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Identity.Web", "..\..\msgraph-sdk-dotnet-core\active-directory-aspnetcore-webapp-openidconnect-v2\Microsoft.Identity.Web\Microsoft.Identity.Web.csproj", "{1B39C48F-D6EB-4846-ABD6-41299006E400}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Identity.Web.Test", "..\..\msgraph-sdk-dotnet-core\active-directory-aspnetcore-webapp-openidconnect-v2\Microsoft.Identity.Web.Test\Microsoft.Identity.Web.Test.csproj", "{93DA4E5E-2BC4-4C5E-862C-FC06104E0E62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Identity.Web.UI", "..\..\msgraph-sdk-dotnet-core\active-directory-aspnetcore-webapp-openidconnect-v2\Microsoft.Identity.Web.UI\Microsoft.Identity.Web.UI.csproj", "{30FEE224-D905-4FA7-AA51-6AB0B56D772E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,22 +28,22 @@ Global
 		{8DCFEEC2-0A85-4C7E-B96A-21C9184470B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DCFEEC2-0A85-4C7E-B96A-21C9184470B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DCFEEC2-0A85-4C7E-B96A-21C9184470B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0CEF26A-6CE6-4505-851B-6580D5564752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0CEF26A-6CE6-4505-851B-6580D5564752}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0CEF26A-6CE6-4505-851B-6580D5564752}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0CEF26A-6CE6-4505-851B-6580D5564752}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CCEAE2A-BDF6-470C-B6DE-7FC81A74DBD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CCEAE2A-BDF6-470C-B6DE-7FC81A74DBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CCEAE2A-BDF6-470C-B6DE-7FC81A74DBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CCEAE2A-BDF6-470C-B6DE-7FC81A74DBD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CC22202-F66C-4332-A4F0-A2C09EBA08EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CC22202-F66C-4332-A4F0-A2C09EBA08EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CC22202-F66C-4332-A4F0-A2C09EBA08EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CC22202-F66C-4332-A4F0-A2C09EBA08EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31ED7819-E00F-43C6-9CDD-D408C443A618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31ED7819-E00F-43C6-9CDD-D408C443A618}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31ED7819-E00F-43C6-9CDD-D408C443A618}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31ED7819-E00F-43C6-9CDD-D408C443A618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B39C48F-D6EB-4846-ABD6-41299006E400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B39C48F-D6EB-4846-ABD6-41299006E400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B39C48F-D6EB-4846-ABD6-41299006E400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B39C48F-D6EB-4846-ABD6-41299006E400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93DA4E5E-2BC4-4C5E-862C-FC06104E0E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93DA4E5E-2BC4-4C5E-862C-FC06104E0E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93DA4E5E-2BC4-4C5E-862C-FC06104E0E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93DA4E5E-2BC4-4C5E-862C-FC06104E0E62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FEE224-D905-4FA7-AA51-6AB0B56D772E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FEE224-D905-4FA7-AA51-6AB0B56D772E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FEE224-D905-4FA7-AA51-6AB0B56D772E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FEE224-D905-4FA7-AA51-6AB0B56D772E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

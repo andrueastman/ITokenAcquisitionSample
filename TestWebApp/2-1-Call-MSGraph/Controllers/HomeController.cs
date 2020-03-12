@@ -2,14 +2,13 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Microsoft.Graph;
 using Microsoft.Identity.Web;
 using WebApp_OpenIDConnect_DotNet.Models;
-using WebApp_OpenIDConnect_DotNet.Services;
 using Constants = WebApp_OpenIDConnect_DotNet.Infrastructure.Constants;
 
 namespace WebApp_OpenIDConnect_DotNet.Controllers
@@ -17,14 +16,11 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        readonly ITokenAcquisition tokenAcquisition;
-        readonly WebOptions webOptions;
+        readonly ITokenAcquisition _tokenAcquisition;
 
-        public HomeController(ITokenAcquisition tokenAcquisition,
-                              IOptions<WebOptions> webOptionValue)
+        public HomeController(ITokenAcquisition tokenAcquisition)
         {
-            this.tokenAcquisition = tokenAcquisition;
-            this.webOptions = webOptionValue.Value;
+            this._tokenAcquisition = tokenAcquisition;
         }
 
         public IActionResult Index()
@@ -36,15 +32,22 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
         public async Task<IActionResult> Profile()
         {
             // Initialize the GraphServiceClient. 
-            HttpClient httpClient = GraphClientFactory.Create();
+            TokenAcquisitionAuthProvider tokenAcquisitionAuthProvider = new TokenAcquisitionAuthProvider(_tokenAcquisition, new[] { Constants.ScopeUserRead });
+            
+            HttpClient httpClient = GraphClientFactory.Create(tokenAcquisitionAuthProvider);
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://graph.microsoft.com/v1.0/me/");
+            HttpResponseMessage meResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+            string response = await meResponseMessage.Content.ReadAsStringAsync();
+            var me = JsonSerializer.Deserialize(response, typeof(Microsoft.Graph.User));
 
-            var me = await graphClient.Me.Request().GetAsync();
             ViewData["Me"] = me;
 
             try
             {
+                httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://graph.microsoft.com/v1.0/me/");
+                meResponseMessage = await httpClient.SendAsync(httpRequestMessage);
                 // Get user photo
-                using (var photoStream = await graphClient.Me.Photo.Content.Request().GetAsync())
+                using (var photoStream = await meResponseMessage.Content.ReadAsStreamAsync())
                 {
                     byte[] photoByte = ((MemoryStream)photoStream).ToArray();
                     ViewData["Photo"] = Convert.ToBase64String(photoByte);
