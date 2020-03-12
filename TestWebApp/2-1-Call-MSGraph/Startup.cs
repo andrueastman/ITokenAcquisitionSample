@@ -6,12 +6,9 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.TokenCacheProviders.Distributed;
 using Microsoft.Identity.Web.TokenCacheProviders.InMemory;
 using WebApp_OpenIDConnect_DotNet.Infrastructure;
-using WebApp_OpenIDConnect_DotNet.Services;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web.UI;
 
@@ -73,9 +70,11 @@ namespace WebApp_OpenIDConnect_DotNet
                     options.SchemaName = "dbo";
                     options.TableName = "TestCache";
                 });
-            */
+
             // Add Graph
             services.AddGraphService(Configuration);
+            */
+
 
             services.AddControllersWithViews(options =>
             {

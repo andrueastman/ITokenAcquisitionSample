@@ -22,8 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Microsoft.Identity.Web.UI\Microsoft.Identity.Web.UI.csproj" />
-    <ProjectReference Include="..\..\Microsoft.Identity.Web\Microsoft.Identity.Web.csproj" />
+    <ProjectReference Include="..\..\msgraph-sdk-dotnet-core\active-directory-aspnetcore-webapp-openidconnect-v2\Microsoft.Identity.Web.UI\Microsoft.Identity.Web.UI.csproj" />
     <ProjectReference Include="..\..\msgraph-sdk-dotnet-core\src\Microsoft.Graph.Core\Microsoft.Graph.Core.csproj" />
   </ItemGroup>
 
