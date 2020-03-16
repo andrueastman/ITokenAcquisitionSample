@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,22 +33,19 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
         public async Task<IActionResult> Profile()
         {
             // Initialize the GraphServiceClient. 
-            TokenAcquisitionAuthProvider tokenAcquisitionAuthProvider = new TokenAcquisitionAuthProvider(_tokenAcquisition, new[] { Constants.ScopeUserRead });
-            
-            HttpClient httpClient = GraphClientFactory.Create(tokenAcquisitionAuthProvider);
-            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://graph.microsoft.com/v1.0/me/");
-            HttpResponseMessage meResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-            string response = await meResponseMessage.Content.ReadAsStringAsync();
-            var me = JsonSerializer.Deserialize(response, typeof(Microsoft.Graph.User));
+            TokenAcquisitionAuthProvider tokenAcquisitionAuthProvider = new TokenAcquisitionAuthProvider(_tokenAcquisition);
+            BaseClient baseClient = new BaseClient("https://graph.microsoft.com/v1.0", tokenAcquisitionAuthProvider);
 
-            ViewData["Me"] = me;
+
+            BaseRequest baseRequest = new BaseRequest("https://graph.microsoft.com/v1.0/me/", baseClient).WithScopes(new[] { Constants.ScopeUserRead });
+
+            ViewData["Me"] = await baseRequest.SendAsync<User>(null,CancellationToken.None);
 
             try
             {
-                httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://graph.microsoft.com/v1.0/me/");
-                meResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+                baseRequest = new BaseRequest("https://graph.microsoft.com/v1.0/me/photo/$value", baseClient).WithScopes(new[] { Constants.ScopeUserRead });
                 // Get user photo
-                using (var photoStream = await meResponseMessage.Content.ReadAsStreamAsync())
+                using (var photoStream = await baseRequest.SendStreamRequestAsync(null,CancellationToken.None))
                 {
                     byte[] photoByte = ((MemoryStream)photoStream).ToArray();
                     ViewData["Photo"] = Convert.ToBase64String(photoByte);
